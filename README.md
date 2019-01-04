@@ -1,4 +1,4 @@
-# Interest Helper
+# Solidity Interest Helper
 An implementation of (approximately) continuously compounding interest in Solidity. I put this together as part of a larger project that I'm working on.
   
 ## Details  
@@ -52,4 +52,6 @@ The main contract is ./contracts/InterestHelper.sol, which inherits from ./lib/D
 ### To run tests:
 Make sure truffle v5 is installed globally:  
 ```npm install -g truffle```  
+```git clone https://github.com/nward13/solidity-interest-helper/ && cd solidity-interest-helper```
+```npm install```
 ```truffle test```
