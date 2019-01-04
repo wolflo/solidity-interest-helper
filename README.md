@@ -53,7 +53,7 @@ So, is it good enough for your application? I don't know (and you should check c
 - Over 100 years, at 5% nominal yearly interest on a principal of $1,000, difference = $0.03
 
 ## Usage
-The main contract is ./contracts/InterestHelper.sol, which inherits from ./lib/DSMath.sol. It is currently compiled using Solidity ^0.5.1, but it should work with 0.4 versions as well if you change the pragma.  
+The main contract is ./contracts/InterestHelper.sol, which inherits from ./lib/DSMath.sol. It is currently compiled using Solidity ^0.5.1, but it will work with 0.4 versions as well if you change the pragma.  
 
 ### To run tests:
 Make sure truffle v5 is installed globally:  
