@@ -52,6 +52,6 @@ The main contract is ./contracts/InterestHelper.sol, which inherits from ./lib/D
 ### To run tests:
 Make sure truffle v5 is installed globally:  
 ```npm install -g truffle```  
-```git clone https://github.com/nward13/solidity-interest-helper/ && cd solidity-interest-helper```
+```git clone https://github.com/nward13/solidity-interest-helper.git && cd solidity-interest-helper```
 ```npm install```
 ```truffle test```
