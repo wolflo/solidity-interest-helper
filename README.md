@@ -10,18 +10,19 @@ ray -> wei * 10 ** 27
 ### accrueInterest(uint _principal, uint _rate, uint _age)
 Uses discretely compounded interest on a period of 1 second to approximate continuously compounded interest.  
 - ```_principal``` The principal to calculate the interest on, in Wei.  
-- ```_rate``` The interest rate. Accepted as a ray representing 1 + the effective interest rate per second, compounded every second. As an example:  
-I want to accrue interest at a nominal rate (i) of 5.0% per year, compounded continuously. (equivalent to an Effective Annual Rate of 5.127%). This is approximately equal to 5.0% per year compounded every second (to about 8 decimal places). If maximum precision is essential, you should calculate effective interest per second directly from your desired effective annual rate, and see the [Approximation](#approximation) section.  
-
-```Effective Rate Per Second = Nominal Rate Per Second compounded every second = Nominal Rate Per Year compounded every second * conversion factor from years to seconds```   
+- ```_rate``` The interest rate. Accepted as a ray representing 1 + the effective interest rate per second, compounded every second.  
+- ```_age``` The time period over which to accrue interest, in seconds.  
+Returns the new principal as a wad. Equal to original principal + interest accrued  
+ 
+As an example:  
+I want to accrue interest at a nominal rate, i, of 5.0% per year, compounded continuously. (equivalent to an Effective Annual Rate of 5.127%). This is approximately equal to 5.0% per year compounded every second (to about 8 decimal places). If maximum precision is essential, you should calculate effective interest per second directly from your desired effective annual rate and see the [Approximation](#approximation) section.  
+The Effective Rate Per Second = Nominal Rate Per Second compounded every second = Nominal Rate Per Year compounded every second * conversion factor from years to seconds   
 ```Effective Rate Per Second = 0.05 / (365 days/yr * 86400 sec/day) = 1.5854895991882 * 10 ** -9```  
 
-The value we want to send the accrueInterest() function is ```1 * 10 ** 27 + Effective Rate Per Second * 10 ** 27 = 1000000001585489599188229325```  
+The value we want to send the accrueInterest() function is: 
+```1 * 10 ** 27 + Effective Rate Per Second * 10 ** 27 = 1000000001585489599188229325```  
 
-- ```_age``` The time period over which to accrue interest, in seconds.  
-
-Returns the new principal as a wad. Equal to original principal + interest accrued  
-So, for this nominal 5% annual rate, compounded continuously, on a 100 Dai principal (represented as a wad by prepending the ```ether``` suffix) over the course of one year (31536000 seconds), ```accrueInterest(100 ether, 1000000001585489599188229325, 31536000)``` will return 5.1271096334354555 Dai. 
+So, for this nominal 5% annual rate, compounded continuously, on a 100 Dai principal (represented as a wad by prepending the ```ether``` suffix) over the course of one year (31536000 seconds), ```accrueInterest(100 ether, 1000000001585489599188229325, 31536000)``` will return 5.1271096334354555 Dai.
 
 ### yearlyRateToRay(uint _rateWad)
 This function is not actually used in the contract, but can help determine the correct value for the ```_rate``` parameter in accrueInterest(). It accepts ```_rateWad```, a wad of the desired nominal interest rate per year, compounded every second (this is approximately equal to nominal interest rate per year compounded continuously). It returns the ray value expected by the accrueInterest function. As an example, we could call this function with the same 5% nominal yearly rate compounded continuously from above. Converting from ether to wei will effectively convert from a decimal value to a wad, so 5% rate = 0.05 can be used as follows:  
