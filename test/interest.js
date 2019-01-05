@@ -1,4 +1,4 @@
-const InterestHelperContract = artifacts.require('../contracts/InterestHelper');
+const InterestContract = artifacts.require('../contracts/Interest');
 const assert = require('assert');
 const BN = require('bignumber.js');
 
@@ -39,7 +39,7 @@ contract("InterestHelper", function(accounts) {
 
 
     beforeEach("Instantiate DSInterest contract", async() => {
-        Interest = await InterestHelperContract.new();
+        Interest = await InterestContract.new();
     });
 
 
@@ -131,7 +131,6 @@ contract("InterestHelper", function(accounts) {
             _rateRay = testCases[i].rate
             _age = testCases[i].age
 
-            // console.log("awaiting newPrincipal")
             newPrincipal = await Interest.accrueInterest(
                 web3.utils.toBN(_principal),
                 web3.utils.toBN(_rateRay),

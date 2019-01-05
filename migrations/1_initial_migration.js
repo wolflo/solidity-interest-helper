@@ -1,7 +1,7 @@
 var Migrations = artifacts.require("./Migrations.sol");
-var InterestHelper = artifacts.require("./InterestHelper.sol");
+var Interest = artifacts.require("./Interest.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(Migrations);
-  deployer.deploy(InterestHelper);
+  deployer.deploy(Interest);
 };

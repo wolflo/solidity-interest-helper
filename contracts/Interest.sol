@@ -7,13 +7,13 @@ import "../lib/DSMath.sol";
 // https://medium.com/dapphub/introducing-ds-math-an-innovative-safe-math-library-d58bc88313da
 
 /**
-* @title InterestHelper
+* @title Interest
 * @author Nick Ward
 * @dev Uses DSMath's wad and ray math to implement (approximately)
 * continuously compounding interest by calculating discretely compounded
 * interest compounded every second.
 */
-contract InterestHelper is DSMath {
+contract Interest is DSMath {
 
     //// Fixed point scale factors
     // wei -> the base unit
@@ -77,14 +77,6 @@ contract InterestHelper is DSMath {
     * @return 1 * 10 ** 27 + Effective Interest Rate Per Second * 10 ** 27
     */
     function yearlyRateToRay(uint _rateWad) external pure returns (uint) {
-        // uint _rate = 0.005 ether;
-        // uint _rate = 0.004987541511039 ether;
-        // uint _rate = 0.00498754151103897 ether;
-        // return add(ray(wdiv(_rate, 365*86400)), ray(1 ether));
-        // uint _rateWad = 0.00498754151103897 ether;
-        // return wadToRay(add(wadToRay(1 ether), rdiv(wadToRay(_rateWad), 365*86400 * 10**27))) / 10 ** 9;
         return add(wadToRay(1 ether), rdiv(wadToRay(_rateWad), weiToRay(365*86400)));
-        // return 365*86400 * 10**27;
-
     }
 }
