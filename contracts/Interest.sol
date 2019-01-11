@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.2;
 
 import "../lib/DSMath.sol";
 
@@ -23,12 +23,12 @@ contract Interest is DSMath {
 
     // Go from wad (10**18) to ray (10**27)
     function wadToRay(uint _wad) internal pure returns (uint) {
-        return _wad * 10 ** 9;
+        return mul(_wad, 10 ** 9);
     }
 
     // Go from wei to ray (10**27)
     function weiToRay(uint _wei) internal pure returns (uint) {
-        return _wei * 10 ** 27;
+        return mul(_wei, 10 ** 27);
     } 
 
 
